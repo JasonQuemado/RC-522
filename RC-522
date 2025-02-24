@@ -1,0 +1,39 @@
+import RPi.GPIO as GPIO
+from pirc522 import RFID
+
+class Rfid:
+
+    def __init__(self):
+        GPIO.setwarnings(False)  
+        GPIO.setmode(GPIO.BOARD) 
+        self.rfd = RFID()
+
+
+    def read_uid(self):
+        try:
+            while True:
+                print("He entrado en el bucle")
+                self.rfd.wait_for_tag()
+                print("He encontrado un tag")
+                (error, tag_type) = self.rfd.request()
+                print("Sigo funcionando")
+                if not error:
+                    print("Tag detected, Type: {tag_type}")
+                    (error, uid) = self.rfd.anticoll()
+                    if not error:
+                        print("UID from tag: {uid}")
+                        return uid
+        except Exception as e:
+            print(f"Error: {e}")
+        finally:
+            self.cleanup()
+
+    def cleanup(self):
+        self.rfd.cleanup()
+        GPIO.cleanup()
+
+if __name__ == "__main__":
+    rf = Rfid()
+    uid = rf.read_uid()
+    print(uid)
+    rf.cleanup()
