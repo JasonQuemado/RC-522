@@ -1,3 +1,5 @@
+https://pypi.org/project/mfrc522-python/
+
 When isntalling the rc-522 libraries you have to install:
 ```
 pip install mfrc522
