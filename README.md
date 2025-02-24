@@ -1,7 +1,11 @@
-You have to:
+When isntalling the rc-522 libraries you have to install:
+```
 echo pip install mfrc522
+```
 instead of:
+```
 pip install pi-rc522
+```
 
 
 | RC-522 pins | Raspberry Pi pins |
