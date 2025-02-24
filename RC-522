@@ -2,19 +2,20 @@ import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
 class Rfid:
-
+    
     def __init__(self):
         GPIO.setwarnings(False) # Desactiva warnings de GPIO
-        GPIO.setmode(GPIO.BOARD) 
-        self.rfd = SimpleMFRC522()  
+        GPIO.setmode(GPIO.BOARD)
+        self.reader = SimpleMFRC522()
 
     def read_uid(self):
         try:
-            while True:
-                print("Esperando un tag...")
-                id, _ = self.rfd.read()
-                print(f"ID de la tarjeta: {id}")
-                return id  # Retorna el ID del tag
+            print("Esperando un tag...")
+            uid, _ = self.reader.read()
+            uid = f"{id:08X}" 
+            print(f"Id de la tarjeta (HEX): {uid}")
+            return uid
+
         except Exception as e:
             print(f"Error: {e}")
         finally:
@@ -26,5 +27,6 @@ class Rfid:
 if __name__ == "__main__":
     rf = Rfid()
     uid = rf.read_uid()
-    print(uid)
+    #print(f"UID leído: {uid}")
     rf.cleanup()
+
