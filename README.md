@@ -1,3 +1,9 @@
+You have to:
+echo pip install mfrc522
+instead of:
+pip install pi-rc522
+
+
 | RC-522 pins | Raspberry Pi pins |
 | --- | --- |
 | SDA | GPIO 24 |
