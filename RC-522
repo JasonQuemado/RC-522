@@ -4,17 +4,16 @@ from mfrc522 import SimpleMFRC522
 class Rfid:
 
     def __init__(self):
-        GPIO.setwarnings(False)  # Desactiva warnings de GPIO
-        GPIO.setmode(GPIO.BOARD)  # Usa numeración física de pines
-        self.rfd = SimpleMFRC522()  # Inicializa el lector RFID
+        GPIO.setwarnings(False) # Desactiva warnings de GPIO
+        GPIO.setmode(GPIO.BOARD) 
+        self.rfd = SimpleMFRC522()  
 
     def read_uid(self):
         try:
             while True:
-                print("Esperando a que se acerque un tag...")
-                id, text = self.rfd.read()  # Lee el ID y texto del tag
+                print("Esperando un tag...")
+                id, _ = self.rfd.read()
                 print(f"ID de la tarjeta: {id}")
-                print(f"Texto de la tarjeta: {text}")
                 return id  # Retorna el ID del tag
         except Exception as e:
             print(f"Error: {e}")
