@@ -1,6 +1,5 @@
-#
-This is how I got the code for the RFID_RC522 tag reader, and the solutions to the problems I encountered, as well as websites that helped me. #
-#
+This is how I got the code for the RFID_RC522 tag reader, and the solutions to the problems I encountered, as well as websites that helped me.
+
 When isntalling the rc-522 libraries you have to install:
 ```
 pip install mfrc522
