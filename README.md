@@ -1,7 +1,7 @@
 Links used for guide:
-| https://pypi.org/project/mfrc522-python/ | |
-| https://docs.python.org/3/library/time.html | |
-| https://github.com/ondryaso/pi-rc522?tab=readme-ov-file | |
+| https://pypi.org/project/mfrc522-python/ | 5 |
+| https://docs.python.org/3/library/time.html | 4 |
+| https://github.com/ondryaso/pi-rc522?tab=readme-ov-file | 3 |
 
 When isntalling the rc-522 libraries you have to install:
 ```
