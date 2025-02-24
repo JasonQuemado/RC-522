@@ -1,9 +1,5 @@
-Links used for guide:
-| ------------------ |
-| https://pypi.org/project/mfrc522-python/ |
-| https://docs.python.org/3/library/time.html |
-| https://github.com/ondryaso/pi-rc522?tab=readme-ov-file |
-
+This is how I got the code for the RFID_RC522 tag reader, and the solutions to the problems I encountered, as well as websites that helped me.
+#
 When isntalling the rc-522 libraries you have to install:
 ```
 pip install mfrc522
@@ -26,4 +22,10 @@ The pin configuration between the Rfid and the Raspberry is the following:
 | RST | GPIO 22 |
 | 3.3V | GPIO 1 |
 
-In the future I will modify the code so that it can read multiple cards, and output the tag id of the card during an x period of time
+Links used for guide:
+| ------------------ |
+| https://pypi.org/project/mfrc522-python/ |
+| https://docs.python.org/3/library/time.html |
+| https://github.com/ondryaso/pi-rc522?tab=readme-ov-file |
+
+In the future I will modify the code so that it can read multiple cards, and output the tag id of the card during an x period of time --> implemented!!
