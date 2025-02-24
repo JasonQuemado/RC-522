@@ -7,6 +7,7 @@ instead of:
 pip install pi-rc522
 ```
 
+The pin configuration between the Rfid and the Raspberry is the following:
 
 | RC-522 pins | Raspberry Pi pins |
 | --- | --- |
