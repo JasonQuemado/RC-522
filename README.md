@@ -1,6 +1,6 @@
 When isntalling the rc-522 libraries you have to install:
 ```
-echo pip install mfrc522
+pip install mfrc522
 ```
 instead of:
 ```
@@ -18,3 +18,5 @@ pip install pi-rc522
 | GND | GPIO 6 |
 | RST | GPIO 22 |
 | 3.3V | GPIO 1 |
+
+In the future I will modify the code so that it can read multiple cards, and output the tag id of the card during an x period of time
