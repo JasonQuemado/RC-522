@@ -1,35 +1,27 @@
 import RPi.GPIO as GPIO
-from pirc522 import RFID
+from mfrc522 import SimpleMFRC522
 
 class Rfid:
 
     def __init__(self):
-        GPIO.setwarnings(False)  
-        GPIO.setmode(GPIO.BOARD) 
-        self.rfd = RFID()
-
+        GPIO.setwarnings(False)  # Desactiva warnings de GPIO
+        GPIO.setmode(GPIO.BOARD)  # Usa numeración física de pines
+        self.rfd = SimpleMFRC522()  # Inicializa el lector RFID
 
     def read_uid(self):
         try:
             while True:
-                print("He entrado en el bucle")
-                self.rfd.wait_for_tag()
-                print("He encontrado un tag")
-                (error, tag_type) = self.rfd.request()
-                print("Sigo funcionando")
-                if not error:
-                    print("Tag detected, Type: {tag_type}")
-                    (error, uid) = self.rfd.anticoll()
-                    if not error:
-                        print("UID from tag: {uid}")
-                        return uid
+                print("Esperando a que se acerque un tag...")
+                id, text = self.rfd.read()  # Lee el ID y texto del tag
+                print(f"ID de la tarjeta: {id}")
+                print(f"Texto de la tarjeta: {text}")
+                return id  # Retorna el ID del tag
         except Exception as e:
             print(f"Error: {e}")
         finally:
             self.cleanup()
 
     def cleanup(self):
-        self.rfd.cleanup()
         GPIO.cleanup()
 
 if __name__ == "__main__":
