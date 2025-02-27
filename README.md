@@ -22,9 +22,10 @@ The pin configuration between the Rfid and the Raspberry is the following:
 | RST | GPIO 22 |
 | 3.3V | GPIO 1 |
 
-
+At first I was using the MFRC522() import, which is more complex and has more functions, but it was giving me trouble with the *"request"* so I used the SimpleMFRC522() import, also explanied and specified on the first link.
 
 Resources I used for guide:
+
 Links
 | ------------------ |
 | https://pypi.org/project/mfrc522-python/ |
