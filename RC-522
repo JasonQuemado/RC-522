@@ -9,7 +9,9 @@ class Rfid:
         GPIO.setmode(GPIO.BOARD)
         self.reader = SimpleMFRC522()
 
-    def read_uid(self,duration = 30,pause = 2):
+    def read_uid(self):
+        duration = 30
+        pause = 2
         startTime = time.time()
         try:
             print("Waiting for a tag...")
