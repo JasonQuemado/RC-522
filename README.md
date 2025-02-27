@@ -22,8 +22,9 @@ The pin configuration between the Rfid and the Raspberry is the following:
 | RST | GPIO 22 |
 | 3.3V | GPIO 1 |
 
-Resources I used for guide:
 
+
+Resources I used for guide:
 Links
 | ------------------ |
 | https://pypi.org/project/mfrc522-python/ |
