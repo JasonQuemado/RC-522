@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
-import time
+#import time
 
 class Rfid:
     
@@ -10,18 +10,19 @@ class Rfid:
         self.reader = SimpleMFRC522()
 
     def read_uid(self):
-        duration = 30
-        pause = 2
-        startTime = time.time()
+        #duration = 30
+        #pause = 2
+        #startTime = time.time()
         try:
             print("Waiting for a tag...")
             print("")
-            while duration > time.time() - startTime:
+            #while duration > time.time() - startTime:
                 uid, _ = self.reader.read()
                 uid = f"{uid:08X}" 
                 print(f"card ID: {uid}")
                 print("")
-                time.sleep(pause)
+                break()
+                #time.sleep(pause)
                 #return uid
         except Exception as e:
             print(f"Error: {e}")
