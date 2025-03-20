@@ -21,7 +21,7 @@ class Rfid:
             uid = f"{uid:08X}" 
             print(f"card ID: {uid}")
             print("")
-            break()
+            #break()
             #time.sleep(pause)
             #return uid
         except Exception as e:
