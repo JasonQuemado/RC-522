@@ -17,13 +17,13 @@ class Rfid:
             print("Waiting for a tag...")
             print("")
             #while duration > time.time() - startTime:
-                uid, _ = self.reader.read()
-                uid = f"{uid:08X}" 
-                print(f"card ID: {uid}")
-                print("")
-                break()
-                #time.sleep(pause)
-                #return uid
+            uid, _ = self.reader.read()
+            uid = f"{uid:08X}" 
+            print(f"card ID: {uid}")
+            print("")
+            break()
+            #time.sleep(pause)
+            #return uid
         except Exception as e:
             print(f"Error: {e}")
         finally:
