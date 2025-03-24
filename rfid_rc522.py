@@ -18,12 +18,12 @@ class Rfid:
             print("")
             #while duration > time.time() - startTime:
             uid, _ = self.reader.read()
-            uid = f"{uid:08X}" 
+            uid = f"{uid:08X}"[:8]
             print(f"card ID: {uid}")
             print("")
             #break()
             #time.sleep(pause)
-            #return uid
+            return uid
         except Exception as e:
             print(f"Error: {e}")
         finally:
@@ -35,4 +35,3 @@ class Rfid:
 if __name__ == "__main__":
     rf = Rfid()
     uid = rf.read_uid()
-
