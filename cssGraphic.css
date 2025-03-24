@@ -1,3 +1,5 @@
+/*Hemos utilizado '#' porque estos cambios los queremos aplicar a vada boton por individual ya que queremos que sean diferentes entre ellos*/
+
 #main-button {
     background-color: blue;
     color: white;
