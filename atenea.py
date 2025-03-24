@@ -91,7 +91,8 @@ class Graphic(Gtk.Window):
         self.botonAct.set_name("red-button")
         self.botonUid.set_markup("<span>Error reading card!</span>")
         
-    #Aqui en el clear activamos
+    #Aqui en el clear indicamos lo que pasará después de pulsarlo y comenzamos el hilo de nuevo
+    #Utilizamos daemon ya que son tareas/hilos que se pueden ejecutar en segundo plano
     def clear_display(self, widget):
         self.botonAct.set_name("main-button")
         self.botonUid.set_markup("<span>Waiting for card...</span>")
