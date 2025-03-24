@@ -33,3 +33,83 @@ Links
 | https://github.com/ondryaso/pi-rc522?tab=readme-ov-file |
 
 In the future I will modify the code so that it can read multiple cards, and output the tag id of the card during an x period of time --> implemented!!
+
+
+Código primera parte del Puzzle 2 sin CSS
+-
+```py
+import gi
+import rfid_rc522
+import threading
+#import cssGraphic
+
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk, Gdk, GLib
+
+
+class Graphic(Gtk.Window):
+    def __init__(self):
+        super().__init__(title="ATENEA")
+        self.set_default_size(600, 400)
+        self.set_border_width(10)
+        self.rfid = rfid_rc522.Rfid()
+
+        # Caja principal
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.add(box)
+
+        # Boton del lector RFID
+        self.botonAct = Gtk.Button()
+        self.botonActShow = Gtk.Label()
+        self.botonActShow.set_markup("<span font='30' weight='bold'>Please, log in with your university card</span>")
+        self.botonAct.add(self.botonActShow)
+        self.botonAct.modify_bg(Gtk.StateFlags.NORMAL, Gdk.color_parse("blue"))
+        self.botonAct.set_size_request(400, 250)
+
+        # Label para mostrar el UID
+        self.botonUid = Gtk.Label()
+        self.botonUid.set_markup("<span font='20' weight='bold'>Waiting for card...</span>")
+
+        # Boton "Clear"
+        labelClear = Gtk.Label()
+        labelClear.set_markup("<span font='20' weight='bold'>CLEAR</span>")
+        self.botonClear = Gtk.Button()
+        self.botonClear.add(labelClear)
+        self.botonClear.set_size_request(400, 100)
+        self.botonClear.connect("clicked", self.clear_display)
+
+        # Empaquetar widgets en la caja
+        box.pack_start(self.botonAct, True, True, 0)
+        box.pack_start(self.botonUid, True, True, 0)
+        box.pack_start(self.botonClear, True, True, 0)
+
+        # Iniciar la deteccion de tarjetas en un hilo separado
+        self.rfid_thread = threading.Thread(target=self.lectorTarjeta)
+        self.rfid_thread.daemon = True
+        self.rfid_thread.start()
+
+    def lectorTarjeta(self):
+        lectorUid = self.rfid.read_uid()
+        GLib.idle_add(self.mostrar_uid, lectorUid)
+
+    def mostrar_uid(self, lectorUid):
+        self.botonAct.modify_bg(Gtk.StateFlags.NORMAL, Gdk.color_parse("green"))
+        self.botonUid.set_markup(f"<span font='20' weight='bold' color='green'>Card ID: {lectorUid}</span>")
+        self.botonActShow.set_markup(f"<span font='30' weight='bold'>Card detected succesfully!</span>")
+
+    def clear_display(self, widget):
+        self.botonAct.modify_bg(Gtk.StateFlags.NORMAL, Gdk.color_parse("blue"))
+        self.botonUid.set_markup("<span font='20' weight='bold'>Waiting for card...</span>")
+        self.botonActShow.set_markup("<span font='30' weight='bold'>Please, log in with your university card</span>")
+        self.rfid_thread = threading.Thread(target=self.lectorTarjeta)
+        self.rfid_thread.daemon = True
+        self.rfid_thread.start()
+
+
+if __name__ == "__main__":
+    atenea = Graphic()
+    atenea.show_all()
+    Gtk.main()
+
+
+```
