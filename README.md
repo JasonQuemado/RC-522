@@ -54,11 +54,9 @@ class Graphic(Gtk.Window):
         self.set_border_width(10)
         self.rfid = rfid_rc522.Rfid()
 
-        # Caja principal
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.add(box)
 
-        # Boton del lector RFID
         self.botonAct = Gtk.Button()
         self.botonActShow = Gtk.Label()
         self.botonActShow.set_markup("<span font='30' weight='bold'>Please, log in with your university card</span>")
@@ -66,11 +64,9 @@ class Graphic(Gtk.Window):
         self.botonAct.modify_bg(Gtk.StateFlags.NORMAL, Gdk.color_parse("blue"))
         self.botonAct.set_size_request(400, 250)
 
-        # Label para mostrar el UID
         self.botonUid = Gtk.Label()
         self.botonUid.set_markup("<span font='20' weight='bold'>Waiting for card...</span>")
 
-        # Boton "Clear"
         labelClear = Gtk.Label()
         labelClear.set_markup("<span font='20' weight='bold'>CLEAR</span>")
         self.botonClear = Gtk.Button()
@@ -78,12 +74,10 @@ class Graphic(Gtk.Window):
         self.botonClear.set_size_request(400, 100)
         self.botonClear.connect("clicked", self.clear_display)
 
-        # Empaquetar widgets en la caja
         box.pack_start(self.botonAct, True, True, 0)
         box.pack_start(self.botonUid, True, True, 0)
         box.pack_start(self.botonClear, True, True, 0)
 
-        # Iniciar la deteccion de tarjetas en un hilo separado
         self.rfid_thread = threading.Thread(target=self.lectorTarjeta)
         self.rfid_thread.daemon = True
         self.rfid_thread.start()
