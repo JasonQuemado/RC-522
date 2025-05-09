@@ -31,14 +31,7 @@ if ($table === 'tasks') {
     $sql .= " ORDER BY subject ASC";
 } elseif ($table === 'students') {
     $sql .= " ORDER BY surname ASC";
-//Añadimos el ordenamiento de las tablas en el servidor,
-//de todos modos habrá que hacer algo en el cliente de todos modos
-/*} elseif ($table === 'timetables') {
-    $sql .= " ORDER BY FIELD(day, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'), hour ASC";
-}*/
-//ha habido que poner lo de today ya que no se hacñia correctamente,
-//desde el cliente pondremos como parámetro el día de hoy
-} elseif ($table === 'timetables' && isset($params['today'])) {
+  /*elseif ($table === 'timetables' && isset($params['today'])) {
     $day = $conn->real_escape_string($params['today']);
     $dias = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     $orden = [];
@@ -46,7 +39,18 @@ if ($table === 'tasks') {
     $start = array_search($day, $dias);
     for ($i = 0; $i < 7; $i++) {
         $orden[] = "'" . $dias[($start + $i) % 7] . "'";
-    }
+    }*/
+    /*elseif ($table === 'timetables') {
+    $now = new DateTime();
+    $weekdays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    $currentDay = $weekdays[$now->format('w')];
+    $currentTime = $now->format('H:i');
+    $dayIndex = array_search($currentDay, ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']);
+    $minuteIndex = $dayIndex * 10000 + intval($now->format('H')) * 60 + intval($now->format('i'));
+    $sql .= " WHERE sort_index >= $minuteIndex ORDER BY sort_index ASC";
+    }*/
+} elseif ($tables === 'timetables') {
+    $sql .= " ORDER BY sort_index ASC, hour ASC";
 }
 
 $result = $conn->query($sql);
