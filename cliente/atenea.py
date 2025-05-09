@@ -211,7 +211,7 @@ class CourseManager(Gtk.Window):
 
         #HE QUITADO TODO EL ORDENAMIENTO EN EL CLIENTE QUE ESTABA AQUÍ
       
-        headers = [h for h in data[0].keys() if h not in ("id", "student_id")]
+        headers = [h for h in data[0].keys() if h not in ("id", "student_id", "sort_index")]
 
         for i, header in enumerate(headers):
             label = Gtk.Label(label=header)
